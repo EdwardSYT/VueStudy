@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Edward-vue-2</title>
+    <script src="lib/jquery-1.11.3.min.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <style type="text/css">
+        
+    </style>
+</head>
+<body>
+
+    <div id="demo">{{ fullName }}</div>
+
+    <ul id="repeat-object" class="demo">
+      <li v-for="(value, key, index) in object">
+        {{ index }}. {{ key }} : {{ value }}
+      </li>
+    </ul>
+
+    <script type="text/javascript">
+        var vm1 = new Vue({
+          el: '#demo',
+          data: {
+            firstName: 'Foo',
+            lastName: 'Bar'
+          },
+          computed: {
+            fullName: function () {
+              return this.firstName + ' ' + this.lastName
+            }
+          }
+        })
+
+        var vm2 = new Vue({
+          el: '#repeat-object',
+          data: {
+            object: {
+              FirstName: 'John',
+              LastName: 'Doe',
+              Age: 30
+            }
+          }
+        })
+    </script>
+</body>

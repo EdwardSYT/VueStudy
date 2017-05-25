@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Edward-vue-test</title>
+  <script src="lib/jquery-1.11.3.min.js"></script>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <style type="text/css"></style>
+</head>
+<body>
+
+  <div id="app-3">
+    <p>{{message}}</p>
+    <input v-model="message">
+    <button v-on:click="reverseMessage">逆转消息</button>
+    <p v-if="seen">控制我的隐藏和显示</p>
+    <ol>
+      <li v-for="todo in todos">
+        {{ todo.text }}
+      </li>
+    </ol>
+    <todo-item v-for="item in groceryList" v-bind:todo="item"></todo-item>
+  </div>
+
+  <script type="text/javascript">
+        Vue.component('todo-item', {
+          props: ['todo'],
+          template: '<p>{{ todo.text }}</p>'
+        })
+        var app = new Vue({
+          el: '#app-3',
+          data: {
+            message:"This is a message! You can edit it!",
+            seen: true,
+            todos: [
+              { text: '州公安局MZGA' },
+              { text: '市公安局MZGA' },
+              { text: 'police' }
+            ],
+            groceryList: [
+              { text: '罪犯1' },
+              { text: '越狱' },
+              { text: '偷窃' }
+            ]
+          },
+          methods: {
+            reverseMessage: function () {
+              var mag = this.message.split('').reverse().join('')
+              this.message = mag
+              this.todos.push({text:mag})
+              if(this.todos.length>10) this.todos = []
+            }
+          }
+        })
+    </script>
+
+</body>

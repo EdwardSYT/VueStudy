@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Edward-vue-3</title>
+    <link rel="icon" href="http://cn.vuejs.org/images/logo.png" type="image/x-icon">
+    <script src="lib/jquery-1.11.3.min.js"></script>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <style type="text/css">
+        body {
+          /*background:url(http://cn.vuejs.org/images/logo.png) no-repeat;*/
+        }
+    </style>
+</head>
+<body>
+
+    <div id="example-1">
+      <button v-on:click="counter += 1">增加 1</button>
+      <button v-on:click="counter -= 1">减少 1</button>
+      <button v-on:click="counter = 0">归零 0</button>
+      <button v-on:click="greet">Greet</button>
+      <p>这个按钮被点击了 {{ counter }} 次。</p>
+      <button v-on:click="say('Edward')">say</button>
+      <button v-on:click="warn('EdwardWarn',$event)">warn</button>
+      <a v-on:click.once="doThis">只能点击一次</a>
+      <input @keyup.enter="submit" value="submit">
+      <div @click.ctrl="doSomething">doSomething</div>
+    </div>
+
+    <script type="text/javascript">
+        var example1 = new Vue({
+          el: '#example-1',
+          data: {
+            counter: 0,
+            name: 'SYT'
+          },
+          methods: {
+            greet: function(event) {
+              alert('Hello' + this.name + '!')
+              alert(event.target.tagName)
+            },
+            say:function(message) {
+              alert(message);
+            },
+            warn:function(message,event) {
+              console.log(message,event);
+            },
+            doThis:function() {
+              alert();
+            },
+            submit:function() {
+              alert("提交");
+            },
+            doSomething:function() {
+              alert("doSomething");
+            }
+          }
+        })
+    </script>
+</body>
