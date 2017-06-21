@@ -11,6 +11,8 @@
 
   <div id="app-3">
     <p>{{message}}</p>
+    <p>{{message}}</p>
+    <p v-once>{{message}}</p><!-- v-once 一次性插值，数据改变时，内容不会更新 -->
     <input v-model="message">
     <button v-on:click="reverseMessage">逆转消息</button>
     <p v-if="seen">控制我的隐藏和显示</p>
