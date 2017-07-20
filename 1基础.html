@@ -5,12 +5,16 @@
   <title>Edward-vue-test</title>
   <script src="lib/jquery-1.11.3.min.js"></script>
   <script src="https://unpkg.com/vue/dist/vue.js"></script>
-  <style type="text/css"></style>
+  <style type="text/css">
+    .active {
+      background: red;
+    }
+  </style>
 </head>
 <body>
 
   <div id="app-3">
-    <p>{{message}}</p>
+    <p v-bind:class="{ active: seen }">{{message}}</p>
     <p>{{message}}</p>
     <p v-once>{{message}}</p><!-- v-once 一次性插值，数据改变时，内容不会更新 -->
     <input v-model="message">
@@ -22,6 +26,7 @@
       </li>
     </ol>
     <todo-item v-for="item in groceryList" v-bind:todo="item"></todo-item>
+    <p>{{ now }} {{ fullName }}</p>
   </div>
 
   <script type="text/javascript">
@@ -32,6 +37,8 @@
         var app = new Vue({
           el: '#app-3',
           data: {
+            firstName:"严",
+            lastName:"铤",
             message:"This is a message! You can edit it!",
             seen: true,
             todos: [
@@ -45,15 +52,43 @@
               { text: '偷窃' }
             ]
           },
+          computed: {// 计算属性
+              now: function () {
+                return Date.now()
+              },
+              fullName: function() {
+                return this.firstName+this.lastName
+              },
+              fullName1: {
+                get: function() {
+                  return this.firstName+this.lastName
+                },
+                set: function(newName) {
+                  var names = newName.split(' ')
+                  this.firstName = names[0]
+                  this.lastName = names[names.length - 1]
+                }
+              }
+          },
+          watch: {
+            firstName: function(newFirstName) {
+              alert("改名为 "+newFirstName);
+            }
+          },
           methods: {
             reverseMessage: function () {
               var mag = this.message.split('').reverse().join('')
               this.message = mag
               this.todos.push({text:mag})
               if(this.todos.length>10) this.todos = []
+              // this.testFunction1()
+              return mag
             }
-          }
+          } 
         })
-    </script>
+
+
+
+  </script>
 
 </body>

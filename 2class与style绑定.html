@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Edward-vue-test</title>
+  <script src="lib/jquery-1.11.3.min.js"></script>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <style type="text/css">
+    .active {
+      background: red;
+    }
+    .otherStyle {
+      color: yellow;
+    }
+    .h {
+      height:50px;
+    }
+  </style>
+</head>
+<body>
+  
+  <div id="app">
+    <!-- 对象语法 -->
+    <div v-bind:class="{ active: isActive, 'otherStyle':isOk }">{{ message }}</div>
+    <div v-bind:class="classObject">{{ message }}</div>
+    <div v-bind:class="classObjectC">{{ message }}</div>
+    <!-- 数组语法 -->
+    <div v-bind:class="[isActive?one:'',two, {h:isActive}]">{{ message }}</div>
+    <!-- 内联样式 -->
+    <div v-bind:style="{color:color,fontSize:fontSize}">{{ message }}</div>
+    <div v-bind:style="styleObject">{{ message }}</div>
+
+  </div>
+
+  <script type="text/javascript">
+    var app = new Vue({
+      el:"#app",
+      data:{
+        message:"你有一条新信息",
+        color:"blue",
+        fontSize:"40px",
+        styleObject:{
+          color:"blue",
+          fontSize:"30px"
+        },
+        isActive:true,
+        isOk:true,
+        classObject:{
+          active: true, 
+          'otherStyle':true
+        },
+        one:"active",
+        two:"otherStyle"
+      },
+      computed:{
+        classObjectC: function() {
+          return {
+            active: this.isActive, 
+            'otherStyle':this.isActive
+          }
+        }
+      }
+    })
+  </script>
+
+</body>
