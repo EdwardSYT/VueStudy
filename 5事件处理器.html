@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Edward-vue-test</title>
+  <script src="lib/jquery-1.11.3.min.js"></script>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <style type="text/css">
+    .active {
+      background: red;
+    }
+    .otherStyle {
+      color: yellow;
+    }
+    .h {
+      height:50px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <button v-on:click="counter += 1">增加1</button>
+    <p>这个按钮被点击了 {{ counter }} 次。</p>
+    <button v-on:click="greet">Greet</button>
+  </div>
+
+  <script type="text/javascript">
+    var app = new Vue({
+      el:"#app",
+      data:{
+        counter:0,
+        name:"EdwardSYT"
+      },
+      computed:{
+        
+      },
+      methods:{
+        greet:function() {
+          alert("Hello "+this.name);
+        }
+      }
+    })
+  </script>
+
+</body>
