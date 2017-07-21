@@ -20,14 +20,27 @@
 <body>
   
   <div id="app">
-    {{ message }}
+    <h1 v-if="ok">{{ message }}</h1>
+    <h1 v-else>{{ oldMessage }}</h1>
+    <template v-if="ok">
+      <h1>Title</h1>
+      <p>Paragraph 1</p>
+      <p>Paragraph 2</p>
+    </template>
+    <h1 v-if="type === 1">11111</h1>
+    <h1 v-else-if="type === 2">22222</h1>
+    <h1 v-else-if="type === 3">33333</h1>
+    <h1 v-else>Not 1/2/3</h1>
   </div>
 
   <script type="text/javascript">
     var app = new Vue({
       el:"#app",
       data:{
-        message:"你有一条新信息"
+        message:"你有一条新信息",
+        oldMessage:"你有一条久信息",
+        ok:true,
+        type:0
       },
       computed:{
         

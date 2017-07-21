@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Edward-vue-test</title>
+  <script src="lib/jquery-1.11.3.min.js"></script>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <style type="text/css">
+    .active {
+      background: red;
+    }
+    .otherStyle {
+      color: yellow;
+    }
+    .h {
+      height:50px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <ul>
+      <li v-for="(item, index) in items">{{ parentMessage }} - {{ index }} - {{ item.message }}</li>
+    </ul>
+    <table>
+      <thead>
+        <tr>
+          <th>序号</th>
+          <th>姓名</th>
+          <th>性别</th>
+          <th>年龄</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(table, index) of tables" v-if="table.yn">
+          <td>{{ index+1 }}</td>
+          <td>{{ table.name }}</td>
+          <td>{{ table.sex }}</td>
+          <td>{{ table.age }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- <template v-for="(table, index) of tables">
+      <h1>{{ index }}</h1>
+      <h2>{{ table.name }}</h2>
+      <h3>{{ table.sex }}</h3>
+      <h4>{{ table.age }}</h4>
+    </template> -->
+    <ul v-if="yn">
+      <li v-for="(value, key, index) of object">
+        {{ index+1 }} . {{ key }} : {{ value }}
+      </li>
+    </ul>
+    <span v-for="i in 10"> {{ i }} </span>
+    <div>
+      <input v-model="newTodoText" v-on:keyup.enter="addNewTodo" placeholder="Add a todo">
+      <ul>
+        <todo-item 
+          is="todo-item"
+          v-for="(todo,index) in todos" 
+          v-bind:key="index" 
+          v-bind:title="todo" 
+          v-on:remove="todos.splice(index,1)"
+        ></todo-item>
+      </ul>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    Vue.component('todo-item', {
+      props:['title'],
+      template:'\
+        <li>\
+          {{ title }}\
+          <button v-on:click="$emit(\'remove\')">X</button>\
+        </li>\
+      '
+    })
+    var app = new Vue({
+      el:"#app",
+      data:{
+        yn:true,
+        newTodoText:'',
+        todos:[
+          "wqwq",
+          "eqweqw",
+          "eqwewq"
+        ],
+        parentMessage:"EE",
+        items:[
+          {message:"Foo"},
+          {message:"Bar"},
+          {message:"Edward"},
+          {message:"SYT"}
+        ],
+        tables:[
+          {name:"张艺冬",sex:"男",age:"47",yn:true},
+          {name:"王小波",sex:"男",age:"35",yn:true},
+          {name:"刘一鸣",sex:"男",age:"28",yn:false},
+          {name:"张伟万",sex:"男",age:"56",yn:true},
+          {name:"徐德全",sex:"男",age:"62",yn:true}
+        ],
+        object:{
+          firstName:"Joun",
+          lastName:"Lingder",
+          age:43
+        }
+      },
+      computed:{
+        
+      },
+      methods:{
+        addNewTodo:function() {
+          this.todos.push(this.newTodoText);
+          this.newTodoText = '';
+        }
+      }
+    })
+  </script>
+
+</body>
