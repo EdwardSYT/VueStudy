@@ -5,6 +5,7 @@
   <title>Edward-vue-test</title>
   <script src="lib/jquery-1.11.3.min.js"></script>
   <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="./lib/Vue_v2.2.4.js"></script>
   <style type="text/css">
     .active {
       background: red;
@@ -35,8 +36,9 @@
         
       },
       methods:{
-        greet:function() {
-          alert("Hello "+this.name);
+        greet:function(e) {
+          alert("Hello "+this.name)
+          if(e) alert(e.target.tagName)
         }
       }
     })
