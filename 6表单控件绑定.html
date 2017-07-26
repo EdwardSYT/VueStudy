@@ -34,6 +34,15 @@
     <input type="checkbox" id="three" value="three" v-model="checkedNames">
     <label for="three">three</label><br>
     <span>Checked names:{{ checkedNames }}</span>
+    <br>
+
+    <input type="radio" id="one1" value="one1" v-model="picked">
+    <label for="one1">one1</label>
+    <br>
+    <input type="radio" id="two1" value="two1" v-model="picked">
+    <label for="two1">two1</label>
+    <br>
+    <span>{{ picked }}</span>
   </div>
 
   <script type="text/javascript">
@@ -42,7 +51,8 @@
       data:{
         message:"EdwardSYT",
         checked:true,
-        checkedNames:[]
+        checkedNames:[],
+        picked:''
       },
       computed:{
         
