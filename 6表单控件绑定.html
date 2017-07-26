@@ -20,28 +20,20 @@
 </head>
 <body>
   <div id="app">
-    <button v-on:click="counter += 1">增加1</button>
-    <p>这个按钮被点击了 {{ counter }} 次。</p>
-    <button v-on:click="greet('sayYT',$event)">Greet</button>
-    <input @keyup.alt.enter="greet('sayYT',$event)" v-model="name" type="text"></input>
-    <div @click.ctrl="greet('sayYT',$event)">Do something</div>
+    {{ message }}
   </div>
 
   <script type="text/javascript">
     var app = new Vue({
       el:"#app",
       data:{
-        counter:0,
-        name:"EdwardSYT"
+        message:"EdwardSYT"
       },
       computed:{
         
       },
       methods:{
-        greet: function(message,event) {
-          alert(message+" Hello "+this.name)
-          if(event) alert(event.target.tagName)
-        }
+        
       }
     })
   </script>
