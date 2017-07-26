@@ -20,15 +20,29 @@
 </head>
 <body>
   <div id="app">
-    <input v-model="message" placeholder="">
+    <input v-model="message" placeholder="请输入">
     <p>Message is : {{ message }}</p>
+    <textarea v-model="message" placeholder="请输入"></textarea>
+    <br>
+    <input type="checkbox" id="checkbox" v-model="checked">
+    <label for="checkbox">{{ checked }}</label>
+    <br>
+    <input type="checkbox" id="one" value="one" v-model="checkedNames">
+    <label for="one">one</label>
+    <input type="checkbox" id="two" value="two" v-model="checkedNames">
+    <label for="two">two</label>
+    <input type="checkbox" id="three" value="three" v-model="checkedNames">
+    <label for="three">three</label><br>
+    <span>Checked names:{{ checkedNames }}</span>
   </div>
 
   <script type="text/javascript">
     var app = new Vue({
       el:"#app",
       data:{
-        message:"EdwardSYT"
+        message:"EdwardSYT",
+        checked:true,
+        checkedNames:[]
       },
       computed:{
         
