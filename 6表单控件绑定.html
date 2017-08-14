@@ -43,6 +43,12 @@
     <label for="two1">two1</label>
     <br>
     <span>{{ picked }}</span>
+    <br>
+    <select v-model="selected" multiple>
+      <option disabled value="">请选择</option>
+      <option v-for="option in options" v-bind:value="option.value" value="AAAA">{{ option.text }}</option>
+    </select>
+    <span>Selected:{{ selected }}</span>
   </div>
 
   <script type="text/javascript">
@@ -52,7 +58,13 @@
         message:"EdwardSYT",
         checked:true,
         checkedNames:[],
-        picked:''
+        picked:'',
+        selected:'',
+        options:[
+          {text:"one",value:"A"},
+          {text:"two",value:"B"},
+          {text:"three",value:"C"}
+        ]
       },
       computed:{
         

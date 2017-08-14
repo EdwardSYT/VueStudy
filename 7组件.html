@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Edward-vue-test</title>
+  <script src="lib/jquery-1.11.3.min.js"></script>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+  <script src="./lib/Vue_v2.2.4.js"></script>
+  <style type="text/css">
+    .active {
+      background: red;
+    }
+    .otherStyle {
+      color: yellow;
+    }
+    .h {
+      height:50px;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    {{ message }}
+    <my-component></my-component>
+    <my-t></my-t>
+    <my-numadd></my-numadd>
+    <my-numadd message="Edward"></my-numadd>
+  </div>
+
+  <script type="text/javascript">
+
+    Vue.component("my-component",{
+      template:"<div>A custom component!</div>"
+    })
+
+    var data = {counter:0}
+
+    Vue.component("my-numadd",{
+      props:["message"],
+      template:'<button v-on:click="counter+=1">{{ counter }} {{ message }}</button>',
+      data:function() {
+        return {counter:0}
+      }
+    })
+
+    var Child = {
+      template:"<div>A custom component!!</div>"
+    }
+
+    var app = new Vue({
+      el:"#app",
+      components:{
+        "my-t":Child
+      },
+      data:{
+        message:"EdwardSYT"
+      },
+      computed:{
+        
+      },
+      methods:{
+        
+      }
+    })
+  </script>
+
+</body>
