@@ -19,12 +19,20 @@
   </style>
 </head>
 <body>
+
   <div id="app">
     {{ message }}
     <my-component></my-component>
     <my-t></my-t>
     <my-numadd></my-numadd>
-    <my-numadd message="Edward"></my-numadd>
+    <my-numadd message="Edward" :next-message="nextMess"></my-numadd>
+    <input v-model="nextMess">
+  </div>
+
+  <div id="counter-event-example">
+    <p>{{ total }}</p>
+    <button-counter v-on:increment="incrementTotal"></button-counter>
+    <button-counter v-on:increment="incrementTotal"></button-counter>
   </div>
 
   <script type="text/javascript">
@@ -36,8 +44,8 @@
     var data = {counter:0}
 
     Vue.component("my-numadd",{
-      props:["message"],
-      template:'<button v-on:click="counter+=1">{{ counter }} {{ message }}</button>',
+      props:["message","nextMessage"],
+      template:'<button v-on:click="counter+=1">{{ counter }} {{ message }} {{ nextMessage }}</button>',
       data:function() {
         return {counter:0}
       }
@@ -53,13 +61,40 @@
         "my-t":Child
       },
       data:{
-        message:"EdwardSYT"
+        message:"EdwardSYT",
+        nextMess:"爱德华"
       },
       computed:{
         
       },
       methods:{
         
+      }
+    })
+
+    Vue.component('button-counter', {
+      template: '<button v-on:click="incrementCounter">{{ counter }}</button>',
+      data: function () {
+        return {
+          counter: 0
+        }
+      },
+      methods: {
+        incrementCounter: function () {
+          this.counter += 1
+          this.$emit('increment')
+        }
+      },
+    })
+    new Vue({
+      el: '#counter-event-example',
+      data: {
+        total: 0
+      },
+      methods: {
+        incrementTotal: function () {
+          this.total += 1
+        }
       }
     })
   </script>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Edward-vue-test</title>
+  <script src="lib/jquery-1.11.3.min.js"></script>
+  <!-- <script src="https://unpkg.com/vue/dist/vue.js"></script> -->
+  <script src="./lib/Vue_v2.2.4.js"></script>
+  <style type="text/css">
+    .active {
+      background: red;
+    }
+    .otherStyle {
+      color: yellow;
+    }
+    .h {
+      height:50px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="app">
+    {{ message }}
+  </div>
+
+  <script type="text/javascript">
+
+    var app = new Vue({
+      el:"#app",
+      data:{
+        message:"EdwardSYT"
+      },
+      computed:{
+        
+      },
+      methods:{
+        
+      }
+    })
+
+  </script>
+
+</body>
